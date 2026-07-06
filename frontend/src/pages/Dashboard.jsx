@@ -180,8 +180,8 @@ function Dashboard() {
       
       {/* SALUDO PERSONALIZADO */}
       <div className="mb-4">
-        <h2 className="fw-bold mb-0">Hola, {userName} 👋</h2>
-        <p className="opacity-75">Bienvenido al Sistema de Gestión de la Clínica Ricardo Palma.</p>
+        <h2 className="fw-bold mb-0">Hola, {userName}</h2>
+        <p className="opacity-75">Bienvenido al Sistema de Gestión Citas de la Clínica Ricardo Palma.</p>
       </div>
 
       <div className="d-flex justify-content-between align-items-center mb-4">

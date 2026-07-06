@@ -126,12 +126,12 @@ function Login() {
           style={{ backgroundColor: theme.cardBg, borderRadius: "25px", transition: "0.3s" }}
         >
           <div className="card-body text-center">
-            <div className="d-inline-flex p-3 rounded-circle mb-4 shadow-sm text-white" style={{ backgroundColor: theme.accentHex }}>
-              <i className="bi bi-hospital-fill fs-1"></i>
+            <div className="mb-4">
+              <img src="/logolp.png" alt="Clínica Ricardo Palma" style={{ height: "90px", objectFit: "contain" }} />
             </div>
 
             <h2 className="fw-bold mb-1" style={{ color: theme.text }}>Clínica Ricardo Palma</h2>
-            <p className="small mb-4" style={{ color: theme.muted }}>Acceso al Sistema de Citas Médicas</p>
+            <p className="small mb-4" style={{ color: theme.muted }}>Registro de Citas Médicas</p>
 
             <form onSubmit={handleLogin} className="text-start">
               {/* MODAL DE NOTIFICACIÓN */}
@@ -171,7 +171,7 @@ function Login() {
 
             <div className="mt-3 text-center">
               <p className="small mb-2" style={{ color: theme.text }}>¿No tienes una cuenta? <Link to="/register" style={{ color: theme.accentHex, fontWeight: "bold", textDecoration: "none" }}>Regístrate aquí</Link></p>
-              <p className="small mb-0" style={{ color: theme.muted, opacity: 0.8 }}>UPN © 2026 | Seguridad Protegida</p>
+              <p className="small mb-0" style={{ color: theme.muted, opacity: 0.8 }}>UPN © 2026</p>
             </div>
           </div>
         </div>

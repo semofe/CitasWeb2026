@@ -8,14 +8,14 @@ export const ThemeProvider = ({ children }) => {
 
   const theme = {
     isDarkMode,
-    bg: isDarkMode ? "#0d1117" : "#f8f9fa",
+    bg: isDarkMode ? "#0d1117" : "#f4fdf7",
     sidebarBg: isDarkMode ? "#161b22" : "#ffffff",
     cardBg: isDarkMode ? "#21262d" : "#ffffff",
-    text: isDarkMode ? "#f0f6fc" : "#212529",
-    muted: isDarkMode ? "#9ca3af" : "#6b7280", 
-    accent: isDarkMode ? "info" : "danger",
-    accentHex: isDarkMode ? "#0dcaf0" : "#dc3545",
-    border: isDarkMode ? "#30363d" : "#dee2e6"
+    text: isDarkMode ? "#f0f6fc" : "#1a2e22",
+    muted: isDarkMode ? "#9ca3af" : "#6b7280",
+    accent: isDarkMode ? "info" : "success",
+    accentHex: isDarkMode ? "#0dcaf0" : "#28b565",
+    border: isDarkMode ? "#30363d" : "#c8e6d0"
   };
 
   return (

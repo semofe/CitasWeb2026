@@ -52,11 +52,8 @@ function Sidebar() {
          }}>
       
       {/* LOGO DINÁMICO */}
-      <div className="d-flex align-items-center mb-4 text-decoration-none">
-        <div className={`p-2 rounded me-2 shadow-sm text-white`} style={{ backgroundColor: theme.accentHex }}>
-          <i className="bi bi-hospital-fill fs-4"></i>
-        </div>
-        <span className="fs-5 fw-bold" style={{ color: theme.text }}>Clínica R. Palma</span>
+      <div className="d-flex align-items-center justify-content-center mb-4">
+        <img src="/logoprincipal.png" alt="Clínica R. Palma" style={{ width: "100%", maxHeight: "80px", objectFit: "contain" }} />
       </div>
       
       <hr style={{ opacity: 0.1, color: theme.text }} />
