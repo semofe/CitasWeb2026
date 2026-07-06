@@ -1,0 +1,29 @@
+body {
+  margin: 0;
+  background-color: #f8f9fa;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+a {
+  text-decoration: none;
+}
+/* --- ARREGLO PARA TEXTO DE AYUDA (PLACEHOLDERS) --- */
+
+/* Forzamos el color del texto de ayuda en todos los navegadores */
+.form-control::placeholder {
+  color: #888888 !important; /* Gris neutro visible en ambos modos */
+  opacity: 0.7 !important;    /* Le damos buena visibilidad */
+}
+
+/* Evitamos que el navegador cambie el color al autocompletar */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus {
+  -webkit-text-fill-color: inherit !important;
+  -webkit-box-shadow: 0 0 0px 1000px transparent inset !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
