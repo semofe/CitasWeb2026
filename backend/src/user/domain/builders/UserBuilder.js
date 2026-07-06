@@ -10,6 +10,7 @@ class UserBuilder {
     this._email      = null;
     this._password   = null;
     this._phone      = null;
+    this._sexo       = null;
     this._role       = "usuario";
     this._medicoId   = null;
   }
@@ -44,6 +45,13 @@ class UserBuilder {
     return this;
   }
 
+  setSexo(sexo) {
+    if (sexo !== null && sexo !== undefined && !['M', 'F', 'O'].includes(sexo))
+      throw new Error("El sexo debe ser M, F u O");
+    this._sexo = sexo;
+    return this;
+  }
+
   setRole(role) {
     if (!["admin", "usuario", "medico"].includes(role))
       throw new Error("El rol debe ser admin, usuario o medico");
@@ -70,6 +78,7 @@ class UserBuilder {
       email:      this._email,
       password:   this._password,
       phone:      this._phone,
+      sexo:       this._sexo,
       role:       this._role,
       medicoId:   this._medicoId,
     });

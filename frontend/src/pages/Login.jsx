@@ -62,6 +62,8 @@ function Login() {
         localStorage.setItem("userRole", response.data.data.user.role || "usuario"); 
         localStorage.setItem("userDni", response.data.data.user.dni);
         localStorage.setItem("userName", response.data.data.user.names);
+        localStorage.setItem("userSexo", response.data.data.user.sexo || "");
+        localStorage.setItem("userMedicoId", response.data.data.user.medicoId || "");
 
         // Navegar solo si las credenciales son correctas y el token se guardó
         navigate("/dashboard");
@@ -116,7 +118,7 @@ function Login() {
         className="btn btn-sm position-absolute top-0 end-0 m-4 shadow-sm border px-3 py-2"
         style={{ backgroundColor: theme.cardBg, color: theme.text, borderColor: theme.border, borderRadius: "10px" }}
       >
-        <i className={`bi ${isDarkMode ? 'bi-sun-fill text-info' : 'bi-moon-fill text-danger'} me-2`}></i>
+        <i className={`bi ${isDarkMode ? 'bi-sun-fill text-info' : 'bi-moon-fill'} me-2`} style={{ color: isDarkMode ? undefined : '#1a7a3c' }}></i>
         {isDarkMode ? "Modo Claro" : "Modo Oscuro"}
       </button>
 

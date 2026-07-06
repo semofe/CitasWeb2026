@@ -14,7 +14,8 @@ function Register() {
     user_lastns: "",
     user_email: "",
     user_password: "",
-    user_phone: ""
+    user_phone: "",
+    user_sexo: ""
   });
 
   // Estado para capturar y mostrar errores de validación
@@ -62,7 +63,8 @@ function Register() {
         last_names: formData.user_lastns,
         email: formData.user_email,
         password: formData.user_password,
-        phone: formData.user_phone
+        phone: formData.user_phone,
+        sexo: formData.user_sexo || null
       });
 
       if (response.data) {
@@ -98,7 +100,7 @@ function Register() {
         <div className="card shadow-lg border-0 p-4" style={{ backgroundColor: theme.cardBg, borderRadius: "25px" }}>
           <div className="card-body text-center">
             
-            <div className="d-inline-flex p-3 rounded-circle mb-3 text-white" style={{ backgroundColor: theme.accentHex }}>
+            <div className="d-flex align-items-center justify-content-center rounded-circle mb-3 text-white mx-auto" style={{ backgroundColor: theme.accentHex, width: "72px", height: "72px" }}>
               <i className="bi bi-person-plus-fill fs-2"></i>
             </div>
             
@@ -127,14 +129,22 @@ function Register() {
 
               <div className="mb-3">
                 <label className="form-label small fw-bold" style={{ color: theme.text }}>Nombres</label>
-                <input name="user_names" type="text" className="form-control" style={inputStyle} placeholder="Ej: Juan" onChange={handleChange} required />
+                <input name="user_names" type="text" className="form-control" style={inputStyle} placeholder="Ej: Juan Carlos" onChange={handleChange} required />
               </div>
 
               <div className="mb-3">
                 <label className="form-label small fw-bold" style={{ color: theme.text }}>Apellidos</label>
-                <input name="user_lastns" type="text" className="form-control" style={inputStyle} placeholder="Ej: Pérez" onChange={handleChange} required />
+                <input name="user_lastns" type="text" className="form-control" style={inputStyle} placeholder="Ej: Pérez Ochoa" onChange={handleChange} required />
               </div>
-
+              <div className="mb-3">
+                <label className="form-label small fw-bold" style={{ color: theme.text }}>Sexo</label>
+                <select name="user_sexo" className="form-select" style={inputStyle} onChange={handleChange}>
+                  <option value="">Seleccionar...</option>
+                  <option value="M">Masculino</option>
+                  <option value="F">Femenino</option>
+                  <option value="O">Otro</option>
+                </select>
+              </div>
               <div className="mb-3">
                 <label className="form-label small fw-bold" style={{ color: theme.text }}>Email</label>
                 <input name="user_email" type="email" className="form-control" style={inputStyle} placeholder="usuario@gmail.com" onChange={handleChange} required />

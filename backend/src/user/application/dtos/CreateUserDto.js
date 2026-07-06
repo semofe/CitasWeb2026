@@ -7,13 +7,14 @@ function isValidEmail(email) {
 }
 
 class CreateUserDto {
-  constructor({ dni, names, last_names, email, password, phone } = {}) {
+  constructor({ dni, names, last_names, email, password, phone, sexo } = {}) {
     this.dni        = dni;
     this.names      = names;
     this.last_names = last_names;
     this.email      = typeof email === "string" ? email.trim() : email;
     this.password   = password;
     this.phone      = phone;
+    this.sexo       = sexo || null;
     // role NO viene del cliente, siempre se asigna como "usuario"
   }
 
@@ -47,6 +48,9 @@ class CreateUserDto {
       errors.push("El teléfono es requerido");
     else if (!/^9\d{8}$/.test(this.phone))
       errors.push("El teléfono debe tener 9 dígitos y comenzar con 9");
+
+    if (this.sexo !== null && this.sexo !== undefined && !['M', 'F', 'O'].includes(this.sexo))
+      errors.push("El sexo debe ser M, F u O");
 
     if (errors.length > 0) throw new Error(errors.join(", "));
   }

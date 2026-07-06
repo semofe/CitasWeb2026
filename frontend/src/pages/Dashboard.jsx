@@ -19,6 +19,11 @@ function Dashboard() {
   // OBTENEMOS DATOS DEL USUARIO LOGUEADO
   const role = localStorage.getItem("userRole") || "usuario";
   const userName = localStorage.getItem("userName") || "Usuario";
+  const userSexo = localStorage.getItem("userSexo") || "";
+
+  const greeting = role === "medico"
+    ? userSexo === "F" ? `Bienvenida, Dra. ${userName}` : `Bienvenido, Dr. ${userName}`
+    : `Hola, ${userName}`;
 
   // 1. ESTADOS PARA LOS DATOS REALES
   const [counts, setCounts] = useState({ medicos: 0, pacientes: 0, especialidades: 0, citasHoy: 0 });
@@ -180,8 +185,8 @@ function Dashboard() {
       
       {/* SALUDO PERSONALIZADO */}
       <div className="mb-4">
-        <h2 className="fw-bold mb-0">Hola, {userName}</h2>
-        <p className="opacity-75">Bienvenido al Sistema de Gestión Citas de la Clínica Ricardo Palma.</p>
+        <h2 className="fw-bold mb-0">{greeting}</h2>
+        <p className="opacity-75">Bienvenido al Sistema de Gestión de la Clínica Ricardo Palma.</p>
       </div>
 
       <div className="d-flex justify-content-between align-items-center mb-4">

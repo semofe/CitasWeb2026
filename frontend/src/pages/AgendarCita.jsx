@@ -10,6 +10,9 @@ function AgendarCita() {
   const { theme, isDarkMode } = useTheme();
   const navigate = useNavigate();
   
+  const role = localStorage.getItem("userRole") || "usuario";
+  const userMedicoId = localStorage.getItem("userMedicoId") || "";
+
   const [sedes, setSedes] = useState([]);
   const [especialidades, setEspecialidades] = useState([]);
   const [todosLosMedicos, setTodosLosMedicos] = useState([]); 
@@ -80,6 +83,9 @@ function AgendarCita() {
         // Obtenemos los IDs del médico probando todas las llaves posibles de tu base de datos
         const mSedeId = m.sede_id || m.sedeId || m.sede?.id;
         const mEspId = m.especialidad_id || m.especialidadId || m.especialidad?.id;
+
+        // Excluir al médico logueado para que no se pueda agendar consigo mismo
+        if (userMedicoId && String(m.id) === String(userMedicoId)) return false;
 
         // Comparamos convirtiendo a String para evitar fallos de tipo
         return String(mSedeId) === String(reserva.sedeId) && 

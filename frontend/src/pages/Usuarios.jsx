@@ -18,6 +18,7 @@ function Usuarios() {
     last_names: "",
     email: "",
     phone: "",
+    sexo: "",
   });
   const [modalShow, setModalShow] = useState(false);
   const [modalType, setModalType] = useState("success");
@@ -49,6 +50,7 @@ function Usuarios() {
       last_names: paciente.user_lastns || paciente.last_names || "",
       email: paciente.user_email || paciente.email || "",
       phone: paciente.user_phone || paciente.phone || "",
+      sexo: paciente.sexo || "",
     });
     setShowEditModal(true);
   };
@@ -69,6 +71,7 @@ function Usuarios() {
         last_names: editForm.last_names,
         email: editForm.email,
         phone: editForm.phone,
+        sexo: editForm.sexo || null,
       });
 
       setModalTitle("¡Éxito!");
@@ -142,6 +145,7 @@ function Usuarios() {
                     <th>Nombre del Paciente</th>
                     <th>Correo de Contacto</th>
                     <th>Teléfono</th>
+                    <th>Sexo</th>
                     {role === "admin" && <th className="text-center">Acciones</th>}
                   </tr>
                 </thead>
@@ -168,6 +172,7 @@ function Usuarios() {
                         </td>
                         <td className="small">{email}</td>
                         <td className="small">{telefono}</td>
+                        <td className="small">{p.sexo === 'M' ? 'Masculino' : p.sexo === 'F' ? 'Femenino' : p.sexo === 'O' ? 'Otro' : '---'}</td>
                         {role === "admin" && (
                           <td className="text-center">
                             <button
@@ -192,7 +197,7 @@ function Usuarios() {
                       </tr>
                     );
                   }) : (
-                    <tr><td colSpan={role === "admin" ? "5" : "4"} className="text-center py-4 opacity-50">No hay pacientes registrados.</td></tr>
+                    <tr><td colSpan={role === "admin" ? "6" : "5"} className="text-center py-4 opacity-50">No hay pacientes registrados.</td></tr>
                   )}
                 </tbody>
               </table>
@@ -254,6 +259,20 @@ function Usuarios() {
                       onChange={(e) => setEditForm({ ...editForm, phone: e.target.value })}
                       placeholder="9XXXXXXXX"
                     />
+                  </div>
+                  <div className="mb-1 mt-3">
+                    <label className="form-label small fw-bold">Sexo</label>
+                    <select
+                      className="form-select"
+                      style={{ backgroundColor: theme.bg, color: theme.text, borderColor: theme.border }}
+                      value={editForm.sexo}
+                      onChange={(e) => setEditForm({ ...editForm, sexo: e.target.value })}
+                    >
+                      <option value="">Sin especificar</option>
+                      <option value="M">Masculino</option>
+                      <option value="F">Femenino</option>
+                      <option value="O">Otro</option>
+                    </select>
                   </div>
                 </div>
                 <div className="modal-footer border-0 p-4 pt-0">

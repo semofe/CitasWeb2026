@@ -1,12 +1,13 @@
 const { isValidEmail } = require("./CreateUserDto");
 
 class UpdateUserDto {
-  constructor({ dni, names, last_names, email, phone } = {}) {
+  constructor({ dni, names, last_names, email, phone, sexo } = {}) {
     this.dni        = dni;
     this.names      = names;
     this.last_names = last_names;
     this.email      = typeof email === "string" ? email.trim() : email;
     this.phone      = phone;
+    this.sexo       = sexo;
   }
 
   validate() {
@@ -15,7 +16,7 @@ class UpdateUserDto {
 
     const errors = [];
 
-    if (!this.names && !this.last_names && !this.email && !this.phone)
+    if (!this.names && !this.last_names && !this.email && !this.phone && this.sexo === undefined)
       errors.push("At least one field is required to update");
 
     if (this.names && !/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/.test(this.names))
@@ -29,6 +30,9 @@ class UpdateUserDto {
 
     if (this.phone && !/^9\d{8}$/.test(this.phone))
       errors.push("Phone must be 9 digits and start with 9");
+
+    if (this.sexo !== undefined && this.sexo !== null && !['M', 'F', 'O'].includes(this.sexo))
+      errors.push("El sexo debe ser M, F u O");
 
     if (errors.length > 0) throw new Error(errors.join(", "));
   }

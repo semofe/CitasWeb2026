@@ -279,6 +279,32 @@ function MiPerfil() {
                       </div>
                     </div>
 
+                    {/* SEXO */}
+                    <div className="mb-4">
+                      <label className="form-label fw-bold small">
+                        <i className="bi bi-person-fill me-2" style={{ color: theme.accentHex }}></i>
+                        Sexo
+                      </label>
+                      <select
+                        className="form-select form-select-lg"
+                        name="sexo"
+                        value={formData.sexo || ""}
+                        onChange={handleChange}
+                        style={{
+                          backgroundColor: theme.bg,
+                          color: theme.text,
+                          borderColor: theme.border,
+                          borderRadius: "12px",
+                          borderWidth: "2px"
+                        }}
+                      >
+                        <option value="">Sin especificar</option>
+                        <option value="M">Masculino</option>
+                        <option value="F">Femenino</option>
+                        <option value="O">Otro</option>
+                      </select>
+                    </div>
+
                     {/* DNI (NO EDITABLE) */}
                     <div className="mb-4">
                       <label className="form-label fw-bold small">
@@ -394,6 +420,24 @@ function MiPerfil() {
                             Email
                           </p>
                           <p className="fw-bold fs-5">{usuario.email || "No registrado"}</p>
+                        </div>
+                      </div>
+
+                      {/* SEXO */}
+                      <div className="col-md-6">
+                        <div style={{
+                          backgroundColor: theme.bg,
+                          padding: "20px",
+                          borderRadius: "15px",
+                          borderLeft: `4px solid ${theme.accentHex}`
+                        }}>
+                          <p className="small text-muted mb-2">
+                            <i className="bi bi-person-fill me-2" style={{ color: theme.accentHex }}></i>
+                            Sexo
+                          </p>
+                          <p className="fw-bold fs-5">
+                            {usuario.sexo === 'M' ? 'Masculino' : usuario.sexo === 'F' ? 'Femenino' : usuario.sexo === 'O' ? 'Otro' : 'No especificado'}
+                          </p>
                         </div>
                       </div>
 

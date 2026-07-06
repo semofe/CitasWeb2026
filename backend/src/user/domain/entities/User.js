@@ -6,13 +6,14 @@ const bcrypt = require("bcrypt");
 const SALT_ROUNDS = 10;
 
 class User {
-  constructor({ dni, names, last_names, email, password, phone, role, medicoId, activo, createdAt, updatedAt } = {}) {
+  constructor({ dni, names, last_names, email, password, phone, sexo, role, medicoId, activo, createdAt, updatedAt } = {}) {
     this.dni        = dni;
     this.names      = names;
     this.last_names = last_names;
     this.email      = email;
     this.password   = password;
     this.phone      = phone;
+    this.sexo       = sexo || null;
     this.role       = role || "usuario";   // por defecto siempre es usuario
     this.medicoId   = medicoId || null;    // relación con tabla medicos (si es médico)
     this.activo     = activo !== undefined ? activo : true;  // soft delete flag
@@ -83,6 +84,12 @@ const UserSchema = new EntitySchema({
       name: "user_phone",
       type: "varchar",
       length: 20,
+      nullable: true,
+    },
+    sexo: {
+      name: "user_sexo",
+      type: "varchar",
+      length: 1,
       nullable: true,
     },
     role: {

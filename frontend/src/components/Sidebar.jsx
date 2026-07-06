@@ -87,7 +87,7 @@ function Sidebar() {
 
       {/* BOTÓN DE TEMA */}
       <button onClick={toggleTheme} className="btn btn-sm d-flex align-items-center mb-3 border-0" style={{ color: theme.text }}>
-        <i className={`bi ${isDarkMode ? 'bi-sun-fill text-info' : 'bi-moon-fill text-danger'} me-3 fs-5`}></i>
+        <i className={`bi ${isDarkMode ? 'bi-sun-fill text-info' : 'bi-moon-fill'} me-3 fs-5`} style={{ color: isDarkMode ? undefined : '#1a7a3c' }}></i>
         {isDarkMode ? "Modo Claro" : "Modo Oscuro"}
       </button>
 

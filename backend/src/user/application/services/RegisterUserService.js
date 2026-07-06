@@ -8,10 +8,10 @@ class RegisterUserService {
     this.userRepository = userRepository;
   }
 
-  async execute({ dni, names, last_names, email, password, phone }) {
+  async execute({ dni, names, last_names, email, password, phone, sexo }) {
 
     // DTO valida formato
-    const dto = new CreateUserDto({ dni, names, last_names, email, password, phone });
+    const dto = new CreateUserDto({ dni, names, last_names, email, password, phone, sexo });
     dto.validate();
 
     const existingDni = await this.userRepository.findByDni(dni);
@@ -28,6 +28,7 @@ class RegisterUserService {
       .setEmail(email)
       .setPassword(password)
       .setPhone(phone)
+      .setSexo(sexo || null)
       .setRole("usuario")
       .build();
 
