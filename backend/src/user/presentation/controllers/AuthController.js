@@ -5,10 +5,12 @@ const jwt = require("jsonwebtoken");
 
 class AuthController {
 
-  constructor(registerService, loginService, registerMedicoService) {
-    this.registerService = registerService;
-    this.loginService = loginService;
+  constructor(registerService, loginService, registerMedicoService, forgotPasswordService, resetPasswordService) {
+    this.registerService       = registerService;
+    this.loginService          = loginService;
     this.registerMedicoService = registerMedicoService;
+    this.forgotPasswordService = forgotPasswordService;
+    this.resetPasswordService  = resetPasswordService;
   }
 
   async register(req, res) {
@@ -56,6 +58,29 @@ class AuthController {
     } catch (error) {
       console.log("Login error:", error);
       return res.status(401).json({ ok: false, message: error.message });
+    }
+  }
+
+  async forgotPassword(req, res) {
+    try {
+      const { email } = req.body;
+      if (!email) return res.status(400).json({ ok: false, message: "El correo es requerido" });
+      await this.forgotPasswordService.execute(email);
+      return res.status(200).json({ ok: true, message: "Código enviado al correo electrónico" });
+    } catch (error) {
+      return res.status(400).json({ ok: false, message: error.message });
+    }
+  }
+
+  async resetPassword(req, res) {
+    try {
+      const { email, otp, newPassword } = req.body;
+      if (!email || !otp || !newPassword)
+        return res.status(400).json({ ok: false, message: "Todos los campos son requeridos" });
+      await this.resetPasswordService.execute(email, otp, newPassword);
+      return res.status(200).json({ ok: true, message: "Contraseña actualizada correctamente" });
+    } catch (error) {
+      return res.status(400).json({ ok: false, message: error.message });
     }
   }
 }

@@ -14,6 +14,7 @@ import NotFound from "./pages/NotFound";
 import AgendarCita from "./pages/AgendarCita";
 import MisCitas from "./pages/MisCitas";
 import MisCitasMedico from "./pages/MisCitasMedico";
+import ForgotPassword from "./pages/ForgotPassword";
 import { useTheme } from "./ThemeContext";
 
 function AppContent() {
@@ -21,7 +22,7 @@ function AppContent() {
   const { theme } = useTheme();
   
   // Páginas que no llevan Sidebar
-  const isAuthPage = location.pathname === "/" || location.pathname === "/register";
+  const isAuthPage = location.pathname === "/" || location.pathname === "/register" || location.pathname === "/forgot-password";
 
   return (
     <div className="d-flex" style={{ backgroundColor: theme.bg, minHeight: "100vh" }}>
@@ -38,6 +39,7 @@ function AppContent() {
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/mis-citas" element={<ProtectedRoute element={<MisCitas />} />} />
           <Route path="/mis-citas-medico" element={<ProtectedRoute element={<MisCitasMedico />} />} />
           <Route path="/mi-perfil" element={<ProtectedRoute element={<MiPerfil />} />} />

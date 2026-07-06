@@ -7,6 +7,7 @@ const { database }          = require("./src/database/connection");
 const { RepositoryFactory } = require("./src/database/RepositoryFactory");
 const { CitaHistorialJob }  = require("./src/utils/citaHistorialJob");
 const { EmailService }      = require("./src/utils/EmailService");
+const { otpService }        = require("./src/user/application/services/OtpService");
 
 const { UserServiceFactory }         = require("./src/database/factories/UserServiceFactory");
 const { SedeServiceFactory }         = require("./src/database/factories/SedeServiceFactory");
@@ -43,10 +44,12 @@ database.connect()
     const citaHistorialRepository = RepositoryFactory.create("citaHistorial");
 
     // Servicios — Abstract Factory
-    const registerService    = UserServiceFactory.createRegisterService(userRepository);
+    const registerService       = UserServiceFactory.createRegisterService(userRepository);
     const registerMedicoService = UserServiceFactory.createRegisterMedicoService(userRepository, medicoRepository, sedeRepository, especialidadRepository);
-    const loginService       = UserServiceFactory.createLoginService(userRepository);
-    const userService        = UserServiceFactory.createUserService(userRepository);
+    const loginService          = UserServiceFactory.createLoginService(userRepository);
+    const userService           = UserServiceFactory.createUserService(userRepository);
+    const forgotPasswordService = UserServiceFactory.createForgotPasswordService(userRepository, otpService, emailService);
+    const resetPasswordService  = UserServiceFactory.createResetPasswordService(userRepository, otpService);
     const sedeService        = SedeServiceFactory.createSedeService(sedeRepository);
     const especialidadService = EspecialidadServiceFactory.createEspecialidadService(especialidadRepository);
     const medicoService      = MedicoServiceFactory.createMedicoService(medicoRepository, sedeRepository, especialidadRepository);
@@ -54,7 +57,7 @@ database.connect()
     const citaHistorialService = CitaServiceFactory.createCitaHistorialService(citaRepository, citaHistorialRepository);
 
     // Rutas — reciben servicios ya construidos
-    app.use("/api/auth",           createAuthRouter(registerService, loginService, registerMedicoService));
+    app.use("/api/auth",           createAuthRouter(registerService, loginService, registerMedicoService, forgotPasswordService, resetPasswordService));
     app.use("/api/users",          createUserRouter(userService));
     app.use("/api/sedes",          createSedeRouter(sedeService));
     app.use("/api/especialidades", createEspecialidadRouter(especialidadService));

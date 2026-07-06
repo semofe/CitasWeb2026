@@ -31,9 +31,9 @@ function Usuarios() {
       
       // ESTO ES PARA TI: Mira en la consola (F12) qué nombres traen las columnas
       console.log("Datos de pacientes:", result.data);
-
       const lista = Array.isArray(result.data) ? result.data : (result.data.data || []);
-      setPacientes(lista);
+      const soloPacientes = lista.filter(u => u.role === "usuario");
+      setPacientes(soloPacientes);
       setLoading(false);
     } catch (error) {
       console.error("Error:", error);

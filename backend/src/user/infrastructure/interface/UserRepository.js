@@ -52,6 +52,14 @@ async update(dni, data) {
     await this.repository.save(merged);
     return true;
   }
+
+  async updatePasswordByEmail(email, hashedPassword) {
+    const user = await this.repository.findOne({ where: { email } });
+    if (!user) throw new Error("User not found");
+    const merged = this.repository.merge(user, { password: hashedPassword });
+    await this.repository.save(merged);
+    return true;
+  }
 }
 
 module.exports = { UserRepository };

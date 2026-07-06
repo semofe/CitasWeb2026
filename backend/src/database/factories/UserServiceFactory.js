@@ -1,9 +1,9 @@
-// src/backend/database/factories/UserServiceFactory.js
-
-const { RegisterUserService } = require("../../user/application/services/RegisterUserService");
-const { RegisterMedicoService } = require("../../user/application/services/RegisterMedicoService");
-const { LoginUserService }    = require("../../user/application/services/LoginUserService");
-const { UserService }         = require("../../user/application/services/UserService");
+const { RegisterUserService }    = require("../../user/application/services/RegisterUserService");
+const { RegisterMedicoService }  = require("../../user/application/services/RegisterMedicoService");
+const { LoginUserService }       = require("../../user/application/services/LoginUserService");
+const { UserService }            = require("../../user/application/services/UserService");
+const { ForgotPasswordService }  = require("../../user/application/services/ForgotPasswordService");
+const { ResetPasswordService }   = require("../../user/application/services/ResetPasswordService");
 
 class UserServiceFactory {
   static createRegisterService(userRepository) {
@@ -20,6 +20,14 @@ class UserServiceFactory {
 
   static createUserService(userRepository) {
     return new UserService(userRepository);
+  }
+
+  static createForgotPasswordService(userRepository, otpService, emailService) {
+    return new ForgotPasswordService(userRepository, otpService, emailService);
+  }
+
+  static createResetPasswordService(userRepository, otpService) {
+    return new ResetPasswordService(userRepository, otpService);
   }
 }
 

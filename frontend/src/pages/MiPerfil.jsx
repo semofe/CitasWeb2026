@@ -70,8 +70,8 @@ function MiPerfil() {
       
       {/* ENCABEZADO */}
       <div className="mb-5">
-        <h1 className="fw-bold mb-2">Mi Perfil</h1>
-        <p className="text-muted">Visualiza y edita tus datos personales</p>
+        <h1 className="fw-bold mb-2" style={{ color: theme.text }}>Mi Perfil</h1>
+        <p style={{ color: theme.muted }}>Visualiza y edita tus datos personales</p>
       </div>
 
       {loading ? (
@@ -108,7 +108,7 @@ function MiPerfil() {
                 </div>
 
                 {/* NOMBRE COMPLETO */}
-                <h2 className="fw-bold mb-1">
+                <h2 className="fw-bold mb-1" style={{ color: theme.text }}>
                   {usuario.names} {usuario.last_names}
                 </h2>
 
@@ -128,27 +128,27 @@ function MiPerfil() {
                 {/* DATOS CLAVE */}
                 <div className="text-start">
                   <div className="mb-3">
-                    <p className="small text-muted mb-1">
+                    <p className="small mb-1" style={{ color: theme.muted }}>
                       <i className="bi bi-credit-card me-2" style={{ color: theme.accentHex }}></i>
                       Número de DNI
                     </p>
-                    <p className="fw-bold fs-5">{usuario.dni}</p>
+                    <p className="fw-bold fs-5" style={{ color: theme.text }}>{usuario.dni}</p>
                   </div>
 
                   <div className="mb-3">
-                    <p className="small text-muted mb-1">
+                    <p className="small mb-1" style={{ color: theme.muted }}>
                       <i className="bi bi-telephone me-2" style={{ color: theme.accentHex }}></i>
                       Teléfono
                     </p>
-                    <p className="fw-bold fs-5">{usuario.phone || "No registrado"}</p>
+                    <p className="fw-bold fs-5" style={{ color: theme.text }}>{usuario.phone || "No registrado"}</p>
                   </div>
 
                   <div>
-                    <p className="small text-muted mb-1">
+                    <p className="small mb-1" style={{ color: theme.muted }}>
                       <i className="bi bi-envelope me-2" style={{ color: theme.accentHex }}></i>
                       Email
                     </p>
-                    <p className="fw-bold fs-5">{usuario.email || "No registrado"}</p>
+                    <p className="fw-bold fs-5" style={{ color: theme.text }}>{usuario.email || "No registrado"}</p>
                   </div>
                 </div>
 
@@ -169,7 +169,7 @@ function MiPerfil() {
           <div className="col-lg-8">
             <div className="card shadow-lg border-0 h-100" style={{ backgroundColor: theme.cardBg, borderRadius: "25px" }}>
               <div className="card-header bg-transparent border-0 p-4">
-                <h3 className="mb-0 fw-bold">
+                <h3 className="mb-0 fw-bold" style={{ color: theme.text }}>
                   <i className={`bi bi-${editando ? 'pencil-fill' : 'info-circle'} me-2`} style={{ color: theme.accentHex }}></i>
                   {editando ? 'Editar Información Personal' : 'Información Completa'}
                 </h3>
@@ -183,7 +183,7 @@ function MiPerfil() {
                     <div className="row mb-4">
                       <div className="col-md-6">
                         <div className="mb-3">
-                          <label className="form-label fw-bold small">
+                          <label className="form-label fw-bold small" style={{ color: theme.text }}>
                             <i className="bi bi-person me-2" style={{ color: theme.accentHex }}></i>
                             Nombres
                           </label>
@@ -206,7 +206,7 @@ function MiPerfil() {
                       </div>
                       <div className="col-md-6">
                         <div className="mb-3">
-                          <label className="form-label fw-bold small">
+                          <label className="form-label fw-bold small" style={{ color: theme.text }}>
                             <i className="bi bi-person me-2" style={{ color: theme.accentHex }}></i>
                             Apellidos
                           </label>
@@ -233,7 +233,7 @@ function MiPerfil() {
                     <div className="row mb-4">
                       <div className="col-md-6">
                         <div className="mb-3">
-                          <label className="form-label fw-bold small">
+                          <label className="form-label fw-bold small" style={{ color: theme.text }}>
                             <i className="bi bi-envelope me-2" style={{ color: theme.accentHex }}></i>
                             Email
                           </label>
@@ -256,7 +256,7 @@ function MiPerfil() {
                       </div>
                       <div className="col-md-6">
                         <div className="mb-3">
-                          <label className="form-label fw-bold small">
+                          <label className="form-label fw-bold small" style={{ color: theme.text }}>
                             <i className="bi bi-telephone me-2" style={{ color: theme.accentHex }}></i>
                             Teléfono
                           </label>
@@ -281,7 +281,7 @@ function MiPerfil() {
 
                     {/* SEXO */}
                     <div className="mb-4">
-                      <label className="form-label fw-bold small">
+                      <label className="form-label fw-bold small" style={{ color: theme.text }}>
                         <i className="bi bi-person-fill me-2" style={{ color: theme.accentHex }}></i>
                         Sexo
                       </label>
@@ -307,7 +307,7 @@ function MiPerfil() {
 
                     {/* DNI (NO EDITABLE) */}
                     <div className="mb-4">
-                      <label className="form-label fw-bold small">
+                      <label className="form-label fw-bold small" style={{ color: theme.text }}>
                         <i className="bi bi-credit-card me-2" style={{ color: theme.accentHex }}></i>
                         DNI (No editable)
                       </label>
@@ -349,9 +349,10 @@ function MiPerfil() {
                           backgroundColor: theme.bg,
                           padding: "20px",
                           borderRadius: "15px",
-                          borderLeft: `4px solid ${theme.accentHex}`
+                          borderLeft: `4px solid ${theme.accentHex}`,
+                          color: theme.text
                         }}>
-                          <p className="small text-muted mb-2">
+                          <p className="small mb-2" style={{ color: theme.muted }}>
                             <i className="bi bi-person me-2" style={{ color: theme.accentHex }}></i>
                             Nombre
                           </p>
@@ -365,9 +366,10 @@ function MiPerfil() {
                           backgroundColor: theme.bg,
                           padding: "20px",
                           borderRadius: "15px",
-                          borderLeft: `4px solid ${theme.accentHex}`
+                          borderLeft: `4px solid ${theme.accentHex}`,
+                          color: theme.text
                         }}>
-                          <p className="small text-muted mb-2">
+                          <p className="small mb-2" style={{ color: theme.muted }}>
                             <i className="bi bi-person me-2" style={{ color: theme.accentHex }}></i>
                             Apellidos
                           </p>
@@ -381,9 +383,10 @@ function MiPerfil() {
                           backgroundColor: theme.bg,
                           padding: "20px",
                           borderRadius: "15px",
-                          borderLeft: `4px solid ${theme.accentHex}`
+                          borderLeft: `4px solid ${theme.accentHex}`,
+                          color: theme.text
                         }}>
-                          <p className="small text-muted mb-2">
+                          <p className="small mb-2" style={{ color: theme.muted }}>
                             <i className="bi bi-credit-card me-2" style={{ color: theme.accentHex }}></i>
                             Número de DNI
                           </p>
@@ -397,9 +400,10 @@ function MiPerfil() {
                           backgroundColor: theme.bg,
                           padding: "20px",
                           borderRadius: "15px",
-                          borderLeft: `4px solid ${theme.accentHex}`
+                          borderLeft: `4px solid ${theme.accentHex}`,
+                          color: theme.text
                         }}>
-                          <p className="small text-muted mb-2">
+                          <p className="small mb-2" style={{ color: theme.muted }}>
                             <i className="bi bi-telephone me-2" style={{ color: theme.accentHex }}></i>
                             Teléfono
                           </p>
@@ -413,9 +417,10 @@ function MiPerfil() {
                           backgroundColor: theme.bg,
                           padding: "20px",
                           borderRadius: "15px",
-                          borderLeft: `4px solid ${theme.accentHex}`
+                          borderLeft: `4px solid ${theme.accentHex}`,
+                          color: theme.text
                         }}>
-                          <p className="small text-muted mb-2">
+                          <p className="small mb-2" style={{ color: theme.muted }}>
                             <i className="bi bi-envelope me-2" style={{ color: theme.accentHex }}></i>
                             Email
                           </p>
@@ -429,9 +434,10 @@ function MiPerfil() {
                           backgroundColor: theme.bg,
                           padding: "20px",
                           borderRadius: "15px",
-                          borderLeft: `4px solid ${theme.accentHex}`
+                          borderLeft: `4px solid ${theme.accentHex}`,
+                          color: theme.text
                         }}>
-                          <p className="small text-muted mb-2">
+                          <p className="small mb-2" style={{ color: theme.muted }}>
                             <i className="bi bi-person-fill me-2" style={{ color: theme.accentHex }}></i>
                             Sexo
                           </p>
@@ -447,9 +453,10 @@ function MiPerfil() {
                           backgroundColor: theme.bg,
                           padding: "20px",
                           borderRadius: "15px",
-                          borderLeft: `4px solid ${theme.accentHex}`
+                          borderLeft: `4px solid ${theme.accentHex}`,
+                          color: theme.text
                         }}>
-                          <p className="small text-muted mb-2">
+                          <p className="small mb-2" style={{ color: theme.muted }}>
                             <i className={`bi bi-${usuario.role === 'admin' ? 'shield-check' : 'person'} me-2`} style={{ color: theme.accentHex }}></i>
                             Rol de Usuario
                           </p>

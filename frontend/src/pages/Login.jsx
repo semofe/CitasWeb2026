@@ -173,6 +173,11 @@ function Login() {
 
             <div className="mt-3 text-center">
               <p className="small mb-2" style={{ color: theme.text }}>¿No tienes una cuenta? <Link to="/register" style={{ color: theme.accentHex, fontWeight: "bold", textDecoration: "none" }}>Regístrate aquí</Link></p>
+              <p className="small mb-2">
+                <Link to="/forgot-password" style={{ color: theme.muted, textDecoration: "none", fontSize: "13px" }}>
+                  <i className="bi bi-key me-1"></i>¿Olvidaste tu contraseña?
+                </Link>
+              </p>
               <p className="small mb-0" style={{ color: theme.muted, opacity: 0.8 }}>UPN © 2026</p>
             </div>
           </div>
