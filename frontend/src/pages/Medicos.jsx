@@ -40,9 +40,9 @@ function Medicos() {
 
 
   const [nuevoMedico, setNuevoMedico] = useState({
-    nombres: "", apellidos: "", email: "", telefono: "", 
+    nombres: "", apellidos: "", email: "", telefono: "",
     sedeId: "", especialidadId: "", turno: "mañana", activo: true,
-    crearAcceso: true, dni: "", password: ""
+    crearAcceso: true, dni: "", password: "", sexo: ""
   });
   const [editMedico, setEditMedico] = useState({
     id: "",
@@ -170,6 +170,7 @@ function Medicos() {
             names: nuevoMedico.nombres,
             last_names: nuevoMedico.apellidos,
             phone: nuevoMedico.telefono,
+            sexo: nuevoMedico.sexo || null,
           }
         : medicoPayload;
 
@@ -185,7 +186,7 @@ function Medicos() {
         setNuevoMedico({
           nombres: "", apellidos: "", email: "", telefono: "", 
           sedeId: "", especialidadId: "", turno: "mañana", activo: true,
-          crearAcceso: true, dni: "", password: ""
+          crearAcceso: true, dni: "", password: "", sexo: ""
         });
         
         setTimeout(() => loadAllData(), 1500);
@@ -484,6 +485,19 @@ function Medicos() {
                             value={nuevoMedico.password}
                             onChange={e => setNuevoMedico({ ...nuevoMedico, password: e.target.value })}
                           />
+                        </div>
+                        <div className="col-md-6 mb-2">
+                          <label className="small fw-bold">Sexo</label>
+                          <select
+                            className="form-select"
+                            value={nuevoMedico.sexo}
+                            onChange={e => setNuevoMedico({ ...nuevoMedico, sexo: e.target.value })}
+                          >
+                            <option value="">Sin especificar</option>
+                            <option value="M">Masculino</option>
+                            <option value="F">Femenino</option>
+                            <option value="O">Otro</option>
+                          </select>
                         </div>
                       </>
                     )}

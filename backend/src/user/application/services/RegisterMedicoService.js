@@ -13,7 +13,7 @@ class RegisterMedicoService {
     this.especialidadRepository = especialidadRepository;
   }
 
-  async execute({ dni, names, last_names, email, password, phone, nombres, apellidos, telefono, sedeId, especialidadId, turno, diasAtencion }) {
+  async execute({ dni, names, last_names, email, password, phone, sexo, nombres, apellidos, telefono, sedeId, especialidadId, turno, diasAtencion }) {
     // Validate user data
     const userDto = new CreateUserDto({ dni, names, last_names, email, password, phone });
     userDto.validate();
@@ -62,6 +62,7 @@ class RegisterMedicoService {
       .setEmail(email)
       .setPassword(password)
       .setPhone(phone)
+      .setSexo(sexo || null)
       .setRole("medico")
       .setMedicoId(savedMedico.id)
       .build();
