@@ -1,0 +1,145 @@
+// src/backend/medico/presentation/controllers/MedicoController.js
+
+const { MedicoMapper } = require("../../infrastructure/mappings/MedicoMapper");
+
+class MedicoController {
+
+  constructor(medicoService, registerMedicoService = null) {
+    this.medicoService = medicoService;
+    this.registerMedicoService = registerMedicoService;
+  }
+
+  async create(req, res) {
+    try {
+      const medico = await this.medicoService.create(req.body);
+      return res.status(201).json({
+        ok:      true,
+        message: "Medico created successfully",
+        data:    MedicoMapper.toResponse(medico),
+      });
+    } catch (error) {
+      return res.status(400).json({ ok: false, message: error.message });
+    }
+  }
+
+  async createConAcceso(req, res) {
+    try {
+      if (!this.registerMedicoService) {
+        return res.status(500).json({ ok: false, message: "Servicio de registro de medicos no configurado" });
+      }
+
+      const user = await this.registerMedicoService.execute(req.body);
+      return res.status(201).json({
+        ok: true,
+        message: "Medico y acceso creados exitosamente",
+        data: user,
+      });
+    } catch (error) {
+      return res.status(400).json({ ok: false, message: error.message });
+    }
+  }
+
+  async getAll(req, res) {
+    try {
+      const isAdmin = req.user?.role === "admin";
+      const medicos = isAdmin
+        ? await this.medicoService.getAllIncludingInactive()
+        : await this.medicoService.getAll();
+      return res.status(200).json({
+        ok:   true,
+        data: medicos.map((m) => MedicoMapper.toResponse(m)),
+      });
+    } catch (error) {
+      return res.status(500).json({ ok: false, message: error.message });
+    }
+  }
+
+  async getById(req, res) {
+    try {
+      const medico = await this.medicoService.getById(req.params.id);
+      return res.status(200).json({
+        ok:   true,
+        data: MedicoMapper.toResponse(medico),
+      });
+    } catch (error) {
+      return res.status(404).json({ ok: false, message: error.message });
+    }
+  }
+
+  async getBySede(req, res) {
+    try {
+      const medicos = await this.medicoService.getBySede(req.params.sedeId);
+      return res.status(200).json({
+        ok:   true,
+        data: medicos.map((m) => MedicoMapper.toResponse(m)),
+      });
+    } catch (error) {
+      return res.status(500).json({ ok: false, message: error.message });
+    }
+  }
+
+  async getByEspecialidad(req, res) {
+    try {
+      const medicos = await this.medicoService.getByEspecialidad(req.params.especialidadId);
+      return res.status(200).json({
+        ok:   true,
+        data: medicos.map((m) => MedicoMapper.toResponse(m)),
+      });
+    } catch (error) {
+      return res.status(500).json({ ok: false, message: error.message });
+    }
+  }
+
+  async getBySedeAndEspecialidad(req, res) {
+    try {
+      const { sedeId, especialidadId } = req.query;
+      const medicos = await this.medicoService.getBySedeAndEspecialidad(sedeId, especialidadId);
+      return res.status(200).json({
+        ok:   true,
+        data: medicos.map((m) => MedicoMapper.toResponse(m)),
+      });
+    } catch (error) {
+      return res.status(500).json({ ok: false, message: error.message });
+    }
+  }
+
+  async update(req, res) {
+    try {
+      const medico = await this.medicoService.update(req.params.id, req.body);
+      return res.status(200).json({
+        ok:      true,
+        message: "Medico updated successfully",
+        data:    MedicoMapper.toResponse(medico),
+      });
+    } catch (error) {
+      return res.status(400).json({ ok: false, message: error.message });
+    }
+  }
+
+  async delete(req, res) {
+    try {
+      await this.medicoService.delete(req.params.id);
+      return res.status(200).json({
+        ok:      true,
+        message: "Medico deleted successfully",
+      });
+    } catch (error) {
+      return res.status(404).json({ ok: false, message: error.message });
+    }
+  }
+
+  async toggleActivo(req, res) {
+    try {
+      const nuevoEstado = await this.medicoService.toggleActivo(req.params.id);
+      return res.status(200).json({
+        ok:      true,
+        message: `Medico ${nuevoEstado ? "activado" : "desactivado"} correctamente`,
+        activo:  nuevoEstado,
+      });
+    } catch (error) {
+      return res.status(404).json({ ok: false, message: error.message });
+    }
+  }
+}
+
+module.exports = { MedicoController };

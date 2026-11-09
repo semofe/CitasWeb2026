@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap');
+
+:root { font-family: 'DM Sans', Arial, sans-serif; color: #1a2e22; background: #f4fdf7; }
+* { box-sizing: border-box; }
+body { margin: 0; background: #f4fdf7; min-width: 320px; }
+
+#root {
+  min-height: 100vh;
+}
+
+h1, h2, h3, h4, h5, h6 { font-family: 'Manrope', 'DM Sans', sans-serif; letter-spacing: -0.025em; }
+
+.app-shell { min-height: 100vh; }
+.app-content { min-height: 100vh; margin-left: 260px; padding: 8px; transition: margin .25s ease; }
+.auth-shell .app-content { margin-left: 0; padding: 0; }
+.app-sidebar { width: 260px; height: 100vh; position: fixed; top: 0; left: 0; z-index: 1000; }
+.brand-wrap { min-height: 72px; }
+.role-badge { display: inline-flex; align-items: center; gap: .45rem; padding: .42rem .65rem; border-radius: 999px; font-size: .66rem; font-weight: 800; letter-spacing: .08em; }
+.role-indicator { width: .42rem; height: .42rem; border-radius: 50%; background: #28b565; box-shadow: 0 0 0 3px rgba(40,181,101,.12); }
+.sidebar-link { border-radius: .75rem; padding: .72rem .8rem; font-weight: 600; }
+.sidebar-link:hover { background: rgba(40,181,101,.09); }
+.sidebar-logout { opacity: .7; transition: opacity .2s; }
+.sidebar-logout:hover { opacity: 1; }
+
+.card { border-radius: 1rem; }
+.card.shadow-lg, .shadow { box-shadow: 0 16px 36px rgba(23, 70, 40, .10) !important; }
+.form-control, .form-select { border-color: #d6e7da; border-radius: .7rem; padding: .63rem .8rem; }
+.form-control:focus, .form-select:focus { border-color: #28b565; box-shadow: 0 0 0 .22rem rgba(40,181,101,.14); }
+.form-control:focus-visible, .form-select:focus-visible, .btn:focus-visible, a:focus-visible, button:focus-visible {
+  outline: 3px solid #0b5ed7;
+  outline-offset: 3px;
+}
+.btn { border-radius: .7rem; font-weight: 700; }
+.btn-success { background: #28b565; border-color: #28b565; }
+.btn-success:hover, .btn-success:focus { background: #1d994f; border-color: #1d994f; }
+
+@media (max-width: 767.98px) {
+  .app-sidebar { position: static !important; width: 100% !important; height: auto !important; min-height: 0 !important; }
+  .app-sidebar .brand-wrap { display: none !important; }
+  .app-sidebar ul { display: flex; flex-direction: row !important; flex-wrap: wrap; gap: .25rem; margin-bottom: 1rem !important; }
+  .app-sidebar .nav-item { flex: 1 1 auto; }
+  .app-sidebar .sidebar-link { justify-content: center; padding: .55rem; }
+  .app-sidebar .sidebar-link i { margin-right: 0 !important; }
+  .app-sidebar .sidebar-link { font-size: 0; }
+  .app-sidebar .sidebar-link i { font-size: 1.1rem !important; }
+  .app-sidebar hr, .app-sidebar .role-badge { display: none; }
+  .app-content { margin-left: 0; padding: 0; }
+}
+
+a {
+  text-decoration: none;
+}
+/* --- ARREGLO PARA TEXTO DE AYUDA (PLACEHOLDERS) --- */
+
+/* Forzamos el color del texto de ayuda en todos los navegadores */
+.form-control::placeholder {
+  color: #888888 !important; /* Gris neutro visible en ambos modos */
+  opacity: 0.7 !important;    /* Le damos buena visibilidad */
+}
+
+/* Evitamos que el navegador cambie el color al autocompletar */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus {
+  -webkit-text-fill-color: inherit !important;
+  -webkit-box-shadow: 0 0 0px 1000px transparent inset !important;
+  transition: background-color 5000s ease-in-out 0s;
+}

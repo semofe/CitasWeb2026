@@ -1,0 +1,57 @@
+// src/backend/user/infrastructure/mappings/UserMapper.js
+
+const { User } = require("../../domain/entities/User");
+const { isValidEmail } = require("../../../common/validation/email");
+
+class UserMapper {
+
+  static toDomain(raw) {
+    if (!raw) return null;
+    return new User({
+      dni:        raw.dni,
+      names:      raw.names,
+      last_names: raw.last_names,
+      email:      raw.email,
+      password:   raw.password,
+      phone:      raw.phone,
+      sexo:       raw.sexo,
+      role:       raw.role,
+      medicoId:   raw.medicoId,
+      activo:     raw.activo,
+      createdAt:  raw.createdAt,
+      updatedAt:  raw.updatedAt,
+    });
+  }
+
+  static toPersistence(user) {
+    return {
+      dni:        user.dni,
+      names:      user.names,
+      last_names: user.last_names,
+      email:      user.email,
+      password:   user.password,
+      phone:      user.phone,
+      sexo:       user.sexo,
+      role:       user.role,
+      medicoId:   user.medicoId,
+      activo:     user.activo,
+    };
+  }
+
+  static toResponse(user) {
+    return {
+      dni:        user.dni,
+      names:      user.names,
+      last_names: user.last_names,
+      email:      user.email,
+      phone:      user.phone,
+      sexo:       user.sexo,
+      role:       user.role,
+      medicoId:   user.medicoId,
+      activo:     user.activo,
+      createdAt:  user.createdAt,
+    };
+  }
+}
+
+module.exports = { UserMapper, isValidEmail };
